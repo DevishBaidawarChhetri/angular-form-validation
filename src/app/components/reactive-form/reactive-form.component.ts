@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-reactive-form',
@@ -19,25 +20,39 @@ export class ReactiveFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private _appcomponent: AppComponent,
   ) { }
 
+  get fullName() { return this.form.get('fullName'); }
+  get email() { return this.form.get('email'); }
+  get address() { return this.form.get('address'); }
+  get phone() { return this.form.get('phone'); }
+  get city() { return this.form.get('city'); }
+  get state() { return this.form.get('state'); }
+  get zip() { return this.form.get('zip'); }
+  // get favLanguage() { return this.form.get('favLanguage'); }
+  get gender() { return this.form.get('gender'); }
+  get rating() { return this.form.get('rating'); }
+  // get selectFile() { return this.form.get('selectFile'); }
+
   ngOnInit(): void {
+    this._appcomponent.setTitle('Reactive Form');
     this.initializeForm();
   }
 
   initializeForm(): void {
     this.form = this.fb.group({
-      fullName: '',
-      email: '',
-      address: '',
-      phone: '',
-      city: '',
-      state: '',
-      zip: '',
+      fullName: ['', [Validators.required, Validators.minLength(7)]],
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$")]],
+      address: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.minLength(10)]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      zip: ['', [Validators.required]],
       favLanguage: this.fb.array([]),
-      gender: '',
-      rating: '',
-      selectfile: '',
+      gender: ['', [Validators.required]],
+      rating: ['', Validators.required],
+      selectfile: ['', [Validators.required]],
     })
   }
 
@@ -52,6 +67,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.invalid) { return }
     console.log(this.form.value);
   }
 

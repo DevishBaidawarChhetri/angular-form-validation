@@ -10,7 +10,18 @@
           id="fullName"
           placeholder="Full Name"
           formControlName="fullName"
+          [class.is-invalid]="fullName.invalid && fullName.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="fullName.invalid && fullName.touched">
+          <span *ngIf="fullName.errors?.required" class="text-danger">
+            Full name is required.
+          </span>
+          <span *ngIf="fullName.errors?.minlength" class="text-danger">
+            Minimum Length should be 6 characters.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
       <div class="form-group col-md-6">
         <label for="email">Email</label>
@@ -20,7 +31,18 @@
           id="email"
           placeholder="Email"
           formControlName="email"
+          [class.is-invalid]="email.invalid && email.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="email.invalid && email.touched">
+          <span *ngIf="email.errors?.required" class="text-danger">
+            Email is required.
+          </span>
+          <span *ngIf="email.errors?.pattern" class="text-danger">
+            Please provide a valid email address
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
     </div>
     <div class="form-row">
@@ -32,7 +54,15 @@
           id="address"
           placeholder="Address"
           formControlName="address"
+          [class.is-invalid]="address.invalid && address.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="address.invalid && address.touched">
+          <span *ngIf="address.errors?.required" class="text-danger">
+            Address is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
       <div class="form-group col-md-6">
         <label for="phone">Phone</label>
@@ -42,7 +72,15 @@
           id="phone"
           placeholder="Phone"
           formControlName="phone"
+          [class.is-invalid]="phone.invalid && phone.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="phone.invalid && phone.touched">
+          <span *ngIf="phone.errors?.required" class="text-danger">
+            Phone is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
     </div>
     <div class="form-row">
@@ -54,7 +92,15 @@
           id="inputCity"
           placeholder="City"
           formControlName="city"
+          [class.is-invalid]="city.invalid && city.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="city.invalid && city.touched">
+          <span *ngIf="city.errors?.required" class="text-danger">
+            City is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
       <div class="form-group col-md-4">
         <label for="inputState">State</label>
@@ -64,6 +110,13 @@
             {{ state }}
           </option>
         </select>
+        <!-- Error Message Begins -->
+        <div *ngIf="state.invalid && state.touched">
+          <span *ngIf="state.errors?.required" class="text-danger">
+            State is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
       <div class="form-group col-md-2">
         <label for="inputZip">Zip</label>
@@ -72,7 +125,15 @@
           class="form-control"
           id="inputZip"
           formControlName="zip"
+          [class.is-invalid]="zip.invalid && zip.touched"
         />
+        <!-- Error Message Begins -->
+        <div *ngIf="zip.invalid && zip.touched">
+          <span *ngIf="zip.errors?.required" class="text-danger">
+            Zip is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
     </div>
     <div class="form-row">
@@ -93,6 +154,13 @@
           </label>
         </div>
       </div>
+      <!-- Error Message Begins -->
+      <div *ngIf="state.invalid && state.touched">
+        <span *ngIf="state.errors?.required" class="text-danger">
+          State is required.
+        </span>
+      </div>
+      <!-- Error Message Ends -->
     </div>
     <hr />
     <div class="form-row">
@@ -131,6 +199,24 @@
           />
           <label class="form-check-label" for="other">Other</label>
         </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            id="null"
+            value=""
+            formControlName="gender"
+          />
+          <label class="form-check-label" for="null">Null</label>
+        </div>
+        <!-- Error Message Begins -->
+        <div *ngIf="gender.invalid && gender.touched">
+          <span *ngIf="gender.errors?.required" class="text-danger">
+            Gender is required.
+          </span>
+        </div>
+        <!-- Error Message Ends -->
       </div>
     </div>
     <hr />

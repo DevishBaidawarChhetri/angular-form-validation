@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-form-validation';
+  constructor(
+    private _titleService: Title,
+  ) { }
+
+  setTitle(newTitle: string) {
+    this._titleService.setTitle(newTitle);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-template-driven-form',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateDrivenFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _appComponent: AppComponent,
+  ) { }
 
   ngOnInit(): void {
+    this._appComponent.setTitle('Template Driven Form');
   }
 
 }
