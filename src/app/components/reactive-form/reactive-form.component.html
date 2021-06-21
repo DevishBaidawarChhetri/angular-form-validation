@@ -73,11 +73,18 @@
           placeholder="Phone"
           formControlName="phone"
           [class.is-invalid]="phone.invalid && phone.touched"
+          appNumberOnly
         />
         <!-- Error Message Begins -->
         <div *ngIf="phone.invalid && phone.touched">
           <span *ngIf="phone.errors?.required" class="text-danger">
             Phone is required.
+          </span>
+          <span
+            *ngIf="phone.errors?.minlength || phone.errors?.pattern"
+            class="text-danger"
+          >
+            Please provide a valid phone number.
           </span>
         </div>
         <!-- Error Message Ends -->
@@ -126,6 +133,7 @@
           id="inputZip"
           formControlName="zip"
           [class.is-invalid]="zip.invalid && zip.touched"
+          appZipCode
         />
         <!-- Error Message Begins -->
         <div *ngIf="zip.invalid && zip.touched">

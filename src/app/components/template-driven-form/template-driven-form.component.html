@@ -73,6 +73,7 @@
           [(ngModel)]="userModel.phone"
           #phone="ngModel"
           required
+          appNumberOnly
         />
         <div *ngIf="phone.errors || phone.invalid">
           <small class="text-danger" *ngIf="phone.errors.required"
@@ -138,6 +139,7 @@
           [(ngModel)]="userModel.zip"
           required
           #zip="ngModel"
+          appZipCode
         />
         <div *ngIf="zip.errors && (zip.invalid || zip.touched)">
           <small class="text-danger" *ngIf="zip.errors.required"

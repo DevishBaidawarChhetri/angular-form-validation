@@ -45,7 +45,7 @@ export class ReactiveFormComponent implements OnInit {
       fullName: ['', [Validators.required, Validators.minLength(7)]],
       email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$")]],
       address: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.minLength(10)]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
       city: ['', [Validators.required]],
       state: ['', [Validators.required]],
       zip: ['', [Validators.required]],

@@ -8,6 +8,8 @@ import { TemplateDrivenFormComponent } from './components/template-driven-form/t
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NumberOnlyDirective } from './number-only.directive';
+import { ZipCodeDirective } from './zip-code.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormComponent,
     TemplateDrivenFormComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NumberOnlyDirective,
+    ZipCodeDirective
   ],
   imports: [
     BrowserModule,
