@@ -53,7 +53,29 @@ export class ReactiveFormComponent implements OnInit {
       gender: ['', [Validators.required]],
       rating: ['', Validators.required],
       selectfile: ['', [Validators.required]],
+      itemRows: this.fb.array([this.initItemRows()]),
     })
+  }
+
+  initItemRows(): FormGroup{
+    return this.fb.group({
+      itemName: ['', [Validators.required]],
+      itemDescription: ['', [Validators.required]],
+      itemPrice: ['', [Validators.required]],
+      itemQuantity: ['', [Validators.required]],
+    })
+  }
+
+  get formArr(){
+    return this.form.get('itemRows') as FormArray;
+  }
+
+  addNewRow() {
+    this.formArr.push(this.initItemRows());
+  }
+
+  deleteRow(index: number) {
+    this.formArr.removeAt(index);
   }
 
   onCheckboxChange(e) {

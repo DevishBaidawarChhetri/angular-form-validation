@@ -260,8 +260,83 @@
       </div>
     </div>
     <hr />
+    <h1 class="text-center">For Item</h1>
+    <div class="form-row">
+      <div class="form-group col-md-12" formArrayName="itemRows">
+        <div>
+          <button
+            type="button"
+            class="btn btn-default btn-primary float-right mb-3"
+            (click)="addNewRow()"
+            [disabled]="this.form.get('itemRows').invalid"
+          >
+            Add Item
+          </button>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemRow of form.controls.itemRows['controls']; let i = index" [formGroupName]="i">
+              <td>
+                <input type="text" id="item-name-{{i}}" class="form-control" formControlName="itemName" />
+                <!-- Error Message Begins -->
+                <div *ngIf="itemRow.controls['itemName'].invalid && itemRow.controls['itemName'].touched">
+                  <span *ngIf="itemRow.controls['itemName'].errors?.required" class="text-danger">
+                    Name is required.
+                  </span>
+                </div>
+                <!-- Error Message Ends -->
+              </td>
+              <td>
+                <input type="text" id="item-description-{{i}}" class="form-control" formControlName="itemDescription" />
+                <!-- Error Message Begins -->
+                <div *ngIf="itemRow.controls['itemDescription'].invalid && itemRow.controls['itemDescription'].touched">
+                  <span *ngIf="itemRow.controls['itemDescription'].errors?.required" class="text-danger">
+                    Name is required.
+                  </span>
+                </div>
+                <!-- Error Message Ends -->
+              </td>
+              <td>
+                <input type="number" id="item-price-{{i}}" class="form-control" formControlName="itemPrice" />
+                <!-- Error Message Begins -->
+                <div *ngIf="itemRow.controls['itemPrice'].invalid && itemRow.controls['itemPrice'].touched">
+                  <span *ngIf="itemRow.controls['itemPrice'].errors?.required" class="text-danger">
+                    Price is required.
+                  </span>
+                </div>
+                <!-- Error Message Ends -->
+              </td>
+              <td>
+                <input type="number" id="item-quantity-{{i}}" class="form-control" formControlName="itemQuantity" />
+                <!-- Error Message Begins -->
+                <div *ngIf="itemRow.controls['itemQuantity'].invalid && itemRow.controls['itemQuantity'].touched">
+                  <span *ngIf="itemRow.controls['itemQuantity'].errors?.required" class="text-danger">
+                    Quantity is required.
+                  </span>
+                </div>
+                <!-- Error Message Ends -->
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="deleteRow(i)">
+                  DELETE ROW
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="form-group clearfix">
-      <button type="submit" class="btn btn-primary float-md-right">
+      <button type="submit" class="btn btn-primary float-md-right" [disabled]="form.invalid">
         Submit &raquo;
       </button>
     </div>
